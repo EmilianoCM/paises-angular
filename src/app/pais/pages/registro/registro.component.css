@@ -1,0 +1,11 @@
+.error {
+    background-color: red;
+}
+
+.warning {
+    background-color: yellow;
+}
+
+button {
+    margin-top: 10px
+}

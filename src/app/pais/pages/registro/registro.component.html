@@ -1,0 +1,34 @@
+<p>
+    <div class="form-signin">
+        <form [formGroup]="formulario" (ngSubmit)="registrarse()">
+            <div>
+                <h1 class="h3 mb-3 fw-normal">Registrarse</h1>
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" [ngClass]="{
+            error:  formulario.get('nombre')?.errors &&
+                    formulario.get('nombre')?.dirty,
+            warning:formulario.get('nombre')?.hasError('minlength') &&
+                    formulario.get('nombre')?.dirty}">
+            </div>
+            <div *ngIf="formulario.get('nombre')?.errors && formulario.get('nombre')?.dirty">
+                <p *ngIf="formulario.get('nombre')?.hasError('required')">El campo es obligatorio</p>
+                <p *ngIf="formulario.get('nombre')?.hasError('minlength')">El campo debe tener al menos 4 caracteres
+                </p>
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="correo" [ngClass]="{
+            error:  formulario.get('correo')?.errors &&
+                    formulario.get('correo')?.dirty,
+            warning:formulario.get('correo')?.hasError('correo')}">
+            </div>
+            <div>
+                <label>Contraseña</label>
+                <input type="password" class="form-control" formControlName="clave">
+            </div>
+            <div *ngIf="formulario.get('clave')?.errors && formulario.get('clave')?.dirty">
+                <p *ngIf="formulario.get('clave')?.hasError('required')">El campo es obligatorio</p>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary" [disabled]="formulario.invalid">Registrarse</button>
+        </form>
+    </div>
